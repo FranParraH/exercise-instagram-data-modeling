@@ -70,71 +70,18 @@ class Likes(Base):
 
 
 
-# class Films(Base):
-#     __tablename__ = 'films'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String(500))
-#     time_created = Column(DateTime(timezone=True), server_default=func.now())
 
-# class Planet(Base):
-#     __tablename__ = 'planet'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     url = Column(String(500))
-    
-# class Character(Base):
-#     __tablename__ = 'character'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     url = Column(String(500))
-   
-# class Follow_planet(Base):
-#     __tablename__ = 'follow_planet'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     url = Column(String(500))
-#     planet_id = Column(Integer, ForeignKey('planet.id'), nullable=False)
-#     planet = relationship(Character)
-#     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-#     user = relationship(User)
+# folower = Table('follower', Base.metadata,
+#     Column('folower_id', Integer, ForeignKey('user.id')),
+#     Column('to_folower_id', Integer, ForeignKey('user.id'))
 
-# class Follow_character(Base):
-#     __tablename__ = 'follow_character'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     url = Column(String(500))
-#     character_id = Column(Integer, ForeignKey('character.id'), nullable=False)
-#     character = relationship(Character)
-#     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
-#     user = relationship(User)
-
-# class Film_planet(Base):
-#     __tablename__ = 'film_planet'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     planet_id = Column(Integer, ForeignKey('planet.id'), nullable=False)
-#     planet = relationship(Character)
-#     films_id = Column(Integer, ForeignKey('films.id'), nullable=False)
-#     films = relationship(Films)
-
-# class Film_character(Base):
-#     __tablename__ = 'film_character'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     character_id = Column(Integer, ForeignKey('character.id'), nullable=False)
-#     character = relationship(Character)
-#     films_id = Column(Integer, ForeignKey('films.id'), nullable=False)
-#     films = relationship(Films)   
-
-
+# users = relationship(
+#         'Usuario', 
+#         secondary=folower,
+#         primaryjoin=(folower.c.folower_id == id),
+#         secondaryjoin=(folower.c.to_folower_id == id),
+#         backref='follower'
+#     )
 
 
 # class Person(Base):
